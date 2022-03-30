@@ -2,35 +2,37 @@ const {schema,model} = require('mongoose');
 
 const usersSchema = new schema (
     {
-    username: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        require: true,
-        unique: true,
-        match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
-    },
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true
+        },
 
-    thoughts: [{
-        type: schema.types.objectId,
-        ref: 'thoughts'
-    }],
+        email: {
+            type: String,
+            require: true,
+            unique: true,
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
+        },
 
-    friends: [{
-        type: schema.types.objectId,
-        ref: 'users'
-    }]
+        thoughts: [{
+            type: schema.types.objectId,
+            ref: 'thoughts'
+        }],
+
+        friends: [{
+            type: schema.types.objectId,
+            ref: 'users'
+        }]
     },
     {
-    toJSON: {
-        virtual: true,
-        getters: true,
-    },
-    id: false
+        toJSON: {
+            virtual: true,
+            getters: true,
+        },
+        
+        id: false
     }
 )
 
